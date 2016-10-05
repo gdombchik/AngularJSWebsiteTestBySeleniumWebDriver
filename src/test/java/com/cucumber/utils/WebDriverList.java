@@ -6,9 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+//import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.cucumber.propertyManager.PropertyManager;
+//import com.cucumber.propertyManager.PropertyManager;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 public enum WebDriverList {

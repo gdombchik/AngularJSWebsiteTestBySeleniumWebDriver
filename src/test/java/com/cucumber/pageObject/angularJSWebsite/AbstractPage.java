@@ -1,4 +1,4 @@
-package com.cucumber.pageObjectZoo;
+package com.cucumber.pageObject.angularJSWebsite;
 
 import org.openqa.selenium.WebDriver;
 
@@ -11,7 +11,7 @@ public class AbstractPage {
 	}
 	
 	public LandingPage navigateToWebApp(){
-		driver.navigate().to("http://thetestroom.com/webapp/");
+		driver.navigate().to("http://angularjs.org");
 		return new LandingPage(driver);
 	}
 	
