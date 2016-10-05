@@ -1,0 +1,192 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 1191553122,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I am on the zoo site",
+            "match": {
+              "location": "ZooTestCucumberAndJunit.iAmOnTheZooSite()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 1641384662,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ParameterHandling.setUpTest()"
+            }
+          }
+        ],
+        "line": 7,
+        "name": "To populate the contact form",
+        "description": "",
+        "id": "to-test-the-high-level-functionality-of-the-zoo-site;to-populate-the-contact-form",
+        "after": [
+          {
+            "result": {
+              "duration": 117908,
+              "status": "passed"
+            },
+            "match": {
+              "location": "ParameterHandling.afterTest()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1184984911,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I click on \"Contact\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Contact",
+                  "offset": 12
+                }
+              ],
+              "location": "ZooTestCucumberAndJunit.iClickOn(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 209820373,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 9,
+                "value": "#And I enter \"Name test\" into the name field"
+              },
+              {
+                "line": 10,
+                "value": "#And I enter \"Address test\" into the address field"
+              },
+              {
+                "line": 11,
+                "value": "#And I enter \"Postcode test\" into the postcode field"
+              },
+              {
+                "line": 12,
+                "value": "#And I enter \"Email test\"  into the email field"
+              }
+            ],
+            "line": 13,
+            "name": "I populate the form",
+            "match": {
+              "location": "ZooTestCucumberAndJunit.iPopulateTheForm(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Field",
+                  "Value"
+                ],
+                "line": 14
+              },
+              {
+                "cells": [
+                  "name",
+                  "Name test"
+                ],
+                "line": 15
+              },
+              {
+                "cells": [
+                  "address",
+                  "Address test"
+                ],
+                "line": 16
+              },
+              {
+                "cells": [
+                  "postcode",
+                  "Postcode test"
+                ],
+                "line": 17
+              },
+              {
+                "cells": [
+                  "email",
+                  "Email test"
+                ],
+                "line": 18
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 156769990,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "I submit the contact form",
+            "match": {
+              "location": "ZooTestCucumberAndJunit.iSubmitTheContactForm()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 72270152,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "I check I am on the confirmation page",
+            "match": {
+              "location": "ZooTestCucumberAndJunit.iCheckIAmOnTheConfirmationPage()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 561195309,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I close the browser",
+            "match": {
+              "location": "ZooTestCucumberAndJunit.iCloseTheBrowser()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 6,
+            "name": "@tagForZoo"
+          }
+        ]
+      }
+    ],
+    "name": "To test the high level functionality of the Zoo site",
+    "description": "",
+    "id": "to-test-the-high-level-functionality-of-the-zoo-site",
+    "keyword": "Feature",
+    "uri": "zooTest.feature"
+  }
+]
