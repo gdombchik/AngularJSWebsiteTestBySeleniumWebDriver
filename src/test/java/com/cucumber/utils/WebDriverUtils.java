@@ -50,9 +50,9 @@ public class WebDriverUtils{
 	}
 	
 	//Return the element found by tagName filtered by attribute value
-	public WebElement getWebElementByTagNameFilteredByAttributeValue(String tagName,String attribute, String attributeValue){
+	public WebElement getWebElementByLocatorFilteredByAttributeValue(org.openqa.selenium.By locator,String attribute, String attributeValue){
 		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.tagName(tagName));
+		List<WebElement> webElements = driver.findElements(locator);
 		for(WebElement webElement : webElements){
 			if(webElement.getAttribute(attribute).contains(attributeValue)){
 				webElementReturned = webElement;

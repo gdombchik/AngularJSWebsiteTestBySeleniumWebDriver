@@ -1,7 +1,5 @@
 package com.cucumber.pageObject.angularJSWebsite;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,12 +44,12 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getBower
 	public WebElement getBower() {
-		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("input","value", "bower");
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"),"value", "bower");
 	}
 	
 	//getNpm
 	public WebElement getNpm() {
-		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("input","value", "npm");
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"),"value", "npm");
 	}
 	
 	//extras
@@ -71,6 +69,6 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getCloseButton
 	public WebElement getCloseButton(){
-		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("button","class","close");
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("button"),"class","close");
 	}
 }
