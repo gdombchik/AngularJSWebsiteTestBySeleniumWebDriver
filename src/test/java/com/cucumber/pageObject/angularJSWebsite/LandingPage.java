@@ -18,6 +18,8 @@ public class LandingPage extends AbstractPage{
 		return new DownloadAngularJSOnePage(driver);
 	}
 	
-	
+	public TheBasicsPage navigateToTheBasicsPage(){
+		return new TheBasicsPage(driver);
+	}
 	
 }

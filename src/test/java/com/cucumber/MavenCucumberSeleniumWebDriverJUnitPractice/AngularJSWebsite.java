@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageObject.angularJSWebsite.LandingPage;
+import com.cucumber.pageObject.angularJSWebsite.TheBasicsPage;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.After;
@@ -20,6 +21,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private LandingPage landingPage;
 	private DownloadAngularJSOnePage downloadAngularJSOnePage;
 	private WebElement downloadAngularJSOnePageCloseButton;
+	private WebElement theBasicsName;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -70,8 +72,12 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 
 	@When("^I fill in the name\\.$")
-	public void iFillInTheName() throws Throwable {
+	public void iFillInTheName(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
 		
+		TheBasicsPage theBasicsPage = landingPage.navigateToTheBasicsPage();
+		theBasicsName = theBasicsPage.getName();
+		theBasicsName.sendKeys((tableList.get(1).get(1)));
 	}
 
 	@Then("^I confirm the message\\.$")
