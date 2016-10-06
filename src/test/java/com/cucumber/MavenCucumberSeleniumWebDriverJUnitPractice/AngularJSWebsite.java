@@ -19,6 +19,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WebDriver driver = getWebdriver();
 	private LandingPage landingPage;
 	private DownloadAngularJSOnePage downloadAngularJSOnePage;
+	private WebElement downloadAngularJSOnePageCloseButton;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -59,12 +60,13 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getExtras().getText().equals(tableList.get(9).get(1))); //Browse additional modules
 		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(tableList.get(10).get(1))); //Previous Versions
 		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(tableList.get(11).get(1)));  //angular.min.js
-		Assert.assertTrue(downloadAngularJSOnePage.getCloseButton().getText().equals(tableList.get(12).get(1))); //×
+		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
+		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-	
+		downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
