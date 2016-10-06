@@ -22,6 +22,7 @@ Scenario:  Test basic components on the AngularJS home page.
   | Extras  | Browse additional modules |
   | Previous Versions  | Previous Versions |
   | Download Button  | angular.min.js |
+  | Close Button  | × |
 
 	Then I click on the Close button of the Download AngularJS One page.
 
