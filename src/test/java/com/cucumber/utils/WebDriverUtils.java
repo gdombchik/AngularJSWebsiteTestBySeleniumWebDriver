@@ -49,12 +49,12 @@ public class WebDriverUtils{
 		}
 	}
 	
-	//Return the input element filtered by value
-	public WebElement getInputBoxByAttributeValue(String attribute,String value){
+	//Return the element found by tagName filtered by attribute value
+	public WebElement getInputBoxByAttributeValue(String tagName,String attribute, String attributeValue){
 		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.tagName("input"));
+		List<WebElement> webElements = driver.findElements(By.tagName(tagName));
 		for(WebElement webElement : webElements){
-			if(webElement.getAttribute(attribute).contains(value)){
+			if(webElement.getAttribute(attribute).contains(attributeValue)){
 				webElementReturned = webElement;
 			}
 			//System.out.println("-----> " + webElement.getAttribute("value"));
@@ -62,7 +62,7 @@ public class WebDriverUtils{
 		return webElementReturned;
 	};
 	
-	//Return the link element filtered by value
+	//Return the link element filtered by attribute value
 	public WebElement getLinkByAttributeValue(String value){
 		WebElement webElementReturned=null;
 		List<WebElement> webElements = driver.findElements(By.cssSelector(".btn.btn-primary.btn-large"));
@@ -74,17 +74,4 @@ public class WebDriverUtils{
 		}
 		return webElementReturned;
 	};
-	
-	//Return the button element filtered by value
-	public WebElement getButtonByAttributeValue(String value){
-		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.tagName("button"));
-		for(WebElement webElement : webElements){
-			//System.out.println("-----> " + webElement.getAttribute("class"));
-			if(webElement.getAttribute("class").contains(value)){
-				webElementReturned = webElement;
-			}
-		}
-		return webElementReturned;
-	};	
 }
