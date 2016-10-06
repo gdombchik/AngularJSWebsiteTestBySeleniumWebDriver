@@ -6,7 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.cucumber.utils.WebDriverUtils;
+
 public class DownloadAngularJSOnePage extends AbstractPage {
+	WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
+	
 	public DownloadAngularJSOnePage(WebDriver driver){
 		super(driver);
 	}
@@ -42,26 +46,13 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getBower
 	public WebElement getBower() {
-		return getInputBoxByAttributeValue("value","bower");
+		return webDriverUtils.getInputBoxByAttributeValue("value","bower");
 	}
 	
 	//getNpm
 	public WebElement getNpm() {
-		return getInputBoxByAttributeValue("value","npm");
+		return webDriverUtils.getInputBoxByAttributeValue("value","npm");
 	}
-	
-	//Return the input element filtered by value
-	private WebElement getInputBoxByAttributeValue(String attribute,String value){
-		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.tagName("input"));
-		for(WebElement webElement : webElements){
-			if(webElement.getAttribute(attribute).contains(value)){
-				webElementReturned = webElement;
-			}
-			//System.out.println("-----> " + webElement.getAttribute("value"));
-		}
-		return webElementReturned;
-	};
 	
 	//extras
 	public WebElement getExtras() {
@@ -75,37 +66,11 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getDownloadButton
 	public WebElement getDownloadButton(){
-		return getLinkByAttributeValue("angular.min.js");
+		return webDriverUtils.getLinkByAttributeValue("angular.min.js");
 	}
-	
-	//Return the link element filtered by value
-	private WebElement getLinkByAttributeValue(String value){
-		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.cssSelector(".btn.btn-primary.btn-large"));
-		for(WebElement webElement : webElements){
-			//System.out.println("-----> " + webElement.getAttribute("href"));
-			if(webElement.getAttribute("href").contains(value)){
-				webElementReturned = webElement;
-			}
-		}
-		return webElementReturned;
-	};
 	
 	//getCloseButton
 	public WebElement getCloseButton(){
-		return getButtonByAttributeValue("close");
+		return webDriverUtils.getButtonByAttributeValue("close");
 	}
-	
-	//Return the button element filtered by value
-	private WebElement getButtonByAttributeValue(String value){
-		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.tagName("button"));
-		for(WebElement webElement : webElements){
-			//System.out.println("-----> " + webElement.getAttribute("class"));
-			if(webElement.getAttribute("class").contains(value)){
-				webElementReturned = webElement;
-			}
-		}
-		return webElementReturned;
-	};	
 }
