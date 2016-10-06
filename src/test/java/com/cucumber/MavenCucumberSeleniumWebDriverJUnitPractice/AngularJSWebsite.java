@@ -53,12 +53,10 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(tableList.get(3).get(1))); //Minified
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(tableList.get(4).get(1))); //Zip		
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildUncompressed().getText().equals(tableList.get(5).get(1))); //Uncompressed
-		Assert.assertTrue(downloadAngularJSOnePage.getCdn().getAttribute("value").contains(tableList.get(6).get(1))); //cdn
+		Assert.assertTrue(downloadAngularJSOnePage.getCdn().getAttribute("value").contains(tableList.get(6).get(1))); //cdn		
+		Assert.assertTrue(downloadAngularJSOnePage.getBower().getAttribute("value").contains(tableList.get(7).get(1))); //bower
+		Assert.assertTrue(downloadAngularJSOnePage.getNpm().getAttribute("value").contains(tableList.get(8).get(1))); //npm
 		
-		
-		
-		//getBower
-		//getNpm
 		//extras
 		//previousVersions
 		//getDownloadButton

@@ -1,5 +1,7 @@
 package com.cucumber.pageObject.angularJSWebsite;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,11 +42,29 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getBower
 	public WebElement getBower() {
-		return driver.findElement(By.id("cdnURL"));
+		return getInputBoxByAttributeValue("bower");
 	}
 	
-	
 	//getNpm
+	public WebElement getNpm() {
+		return getInputBoxByAttributeValue("npm");
+	}
+	
+	//Return the input element filtered by value
+	private WebElement getInputBoxByAttributeValue(String value){
+		WebElement webElementReturned=null;
+		List<WebElement> webElements = driver.findElements(By.tagName("input"));
+		for(WebElement webElement : webElements){
+			if(webElement.getAttribute("value").contains(value)){
+				webElementReturned = webElement;
+			}
+			//System.out.println("-----> " + webElement.getAttribute("value"));
+		}
+		return webElementReturned;
+	};
+	
+	
+	//
 	//extras
 	//previousVersions
 	//getDownloadButton
