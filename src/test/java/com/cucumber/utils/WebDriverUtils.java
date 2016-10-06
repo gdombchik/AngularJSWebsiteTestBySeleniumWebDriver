@@ -49,8 +49,8 @@ public class WebDriverUtils{
 		}
 	}
 	
-	//Return the element found by tagName filtered by attribute value
-	public WebElement getWebElementByLocatorFilteredByAttributeValue(org.openqa.selenium.By locator,String attribute, String attributeValue){
+	//Return the element found by locator filtered by attribute value
+	public WebElement getWebElementByLocatorFilteredByAttributeValue(By locator,String attribute, String attributeValue){
 		WebElement webElementReturned=null;
 		List<WebElement> webElements = driver.findElements(locator);
 		for(WebElement webElement : webElements){
@@ -58,19 +58,6 @@ public class WebDriverUtils{
 				webElementReturned = webElement;
 			}
 			//System.out.println("-----> " + webElement.getAttribute("value"));
-		}
-		return webElementReturned;
-	};
-	
-	//Return the element found by cssSelector filtered by attribute value
-	public WebElement getWebElementByCssSelectorFilteredByAttributeValue(String cssSelector,String attribute, String attributeValue){
-		WebElement webElementReturned=null;
-		List<WebElement> webElements = driver.findElements(By.cssSelector(".btn.btn-primary.btn-large"));
-		for(WebElement webElement : webElements){
-			//System.out.println("-----> " + webElement.getAttribute("href"));
-			if(webElement.getAttribute("href").contains(attributeValue)){
-				webElementReturned = webElement;
-			}
 		}
 		return webElementReturned;
 	};

@@ -64,7 +64,7 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getDownloadButton
 	public WebElement getDownloadButton(){
-		return webDriverUtils.getWebElementByCssSelectorFilteredByAttributeValue(".btn.btn-primary.btn-large","href","angular.min.js");
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.cssSelector(".btn.btn-primary.btn-large"),"href","angular.min.js");
 	}
 	
 	//getCloseButton
