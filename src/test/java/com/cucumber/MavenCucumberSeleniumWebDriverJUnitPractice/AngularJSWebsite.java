@@ -36,7 +36,6 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmIAmOnTheAngularJSWebsiteHomePage(DataTable table) throws Throwable {
 		List<List<String>> tableList = table.raw();
 		WebElement downLoadAngularJSOneButton = landingPage.getDownLoadAngularJSOneButton(); 
-		System.out.println("--" + tableList.get(1).get(1) + "--");
 		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(tableList.get(1).get(1))); //Download AngularJS 1\n\n(1.5.8 / 1.2.30
 	}
 
@@ -46,8 +45,23 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 
 	@Then("^I check the properties of the Download AngularJS One page\\.$")
-	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage() throws Throwable {
-		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals("Download AngularJS"));
+	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
+		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
+		//System.out.println("----> " + downloadAngularJSOnePage.getBranch().getText());
+		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(tableList.get(2).get(1)));  //1.5.x (stable)
+		
+		
+		//buildMinified
+		//buildZip
+		//buildUncompressed
+		//cdn
+		//getBower
+		//getNpm
+		//extras
+		//previousVersions
+		//getDownloadButton
+		//getCloseButton
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")

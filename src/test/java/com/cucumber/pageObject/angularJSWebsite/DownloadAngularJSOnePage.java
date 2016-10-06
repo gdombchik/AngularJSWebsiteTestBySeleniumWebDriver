@@ -13,6 +13,22 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 		return driver.findElement(By.id("downloadLabel"));
 	}
 
+	//branch
+	public WebElement getBranch() {
+		//System.out.println("------>" + driver.findElements(By.tagName("button")).size());
+		return driver.findElement(By.cssSelector(".btn.branch-1-5-x"));
+	}
+	
+	//buildMinified
+	//buildZip
+	//buildUncompressed
+	//cdn
+	//getBower
+	//getNpm
+	//extras
+	//previousVersions
+	//getDownloadButton
+	//getCloseButton
 	
 	
 }

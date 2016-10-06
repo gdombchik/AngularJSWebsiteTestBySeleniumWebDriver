@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LandingPage extends AbstractPage{
+public class LandingPage extends AbstractPage{	
 	public LandingPage(WebDriver driver){
 		super(driver);
 	}

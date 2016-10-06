@@ -10,6 +10,10 @@ Scenario:  Test basic components on the AngularJS home page.
   | DownLoadAngularJSOneButton  | Download AngularJS 1\n\n(1.5.8 / 1.2.30) |
 	Then I click on the Download AngularJS One button.
 	And I check the properties of the Download AngularJS One page.
+	| Field | Value |
+  | TitleLabel  | Download AngularJS |
+  | Branch  | 1.5.x (stable) |
+
 	Then I click on the Close button of the Download AngularJS One page.
 
 @angularJSWebsiteTestTheBasics
