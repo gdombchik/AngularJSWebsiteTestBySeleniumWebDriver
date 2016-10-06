@@ -46,12 +46,12 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getBower
 	public WebElement getBower() {
-		return webDriverUtils.getInputBoxByAttributeValue("input","value", "bower");
+		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("input","value", "bower");
 	}
 	
 	//getNpm
 	public WebElement getNpm() {
-		return webDriverUtils.getInputBoxByAttributeValue("input","value", "npm");
+		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("input","value", "npm");
 	}
 	
 	//extras
@@ -66,11 +66,11 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getDownloadButton
 	public WebElement getDownloadButton(){
-		return webDriverUtils.getLinkByAttributeValue("angular.min.js");
+		return webDriverUtils.getWebElementByCssSelectorFilteredByAttributeValue(".btn.btn-primary.btn-large","href","angular.min.js");
 	}
 	
 	//getCloseButton
 	public WebElement getCloseButton(){
-		return webDriverUtils.getInputBoxByAttributeValue("button","class","close");
+		return webDriverUtils.getWebElementByTagNameFilteredByAttributeValue("button","class","close");
 	}
 }
