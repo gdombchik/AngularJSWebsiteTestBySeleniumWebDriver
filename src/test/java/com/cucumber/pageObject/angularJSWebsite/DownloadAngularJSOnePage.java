@@ -83,7 +83,7 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 		WebElement webElementReturned=null;
 		List<WebElement> webElements = driver.findElements(By.cssSelector(".btn.btn-primary.btn-large"));
 		for(WebElement webElement : webElements){
-			System.out.println("-----> " + webElement.getAttribute("href"));
+			//System.out.println("-----> " + webElement.getAttribute("href"));
 			if(webElement.getAttribute("href").contains(value)){
 				webElementReturned = webElement;
 			}
@@ -101,7 +101,7 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 		WebElement webElementReturned=null;
 		List<WebElement> webElements = driver.findElements(By.tagName("button"));
 		for(WebElement webElement : webElements){
-			System.out.println("-----> " + webElement.getAttribute("class"));
+			//System.out.println("-----> " + webElement.getAttribute("class"));
 			if(webElement.getAttribute("class").contains(value)){
 				webElementReturned = webElement;
 			}
