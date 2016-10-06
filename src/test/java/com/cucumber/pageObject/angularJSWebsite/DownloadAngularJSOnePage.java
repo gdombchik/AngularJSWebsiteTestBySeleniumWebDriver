@@ -42,20 +42,20 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 	
 	//getBower
 	public WebElement getBower() {
-		return getInputBoxByAttributeValue("bower");
+		return getInputBoxByAttributeValue("value","bower");
 	}
 	
 	//getNpm
 	public WebElement getNpm() {
-		return getInputBoxByAttributeValue("npm");
+		return getInputBoxByAttributeValue("value","npm");
 	}
 	
 	//Return the input element filtered by value
-	private WebElement getInputBoxByAttributeValue(String value){
+	private WebElement getInputBoxByAttributeValue(String attribute,String value){
 		WebElement webElementReturned=null;
 		List<WebElement> webElements = driver.findElements(By.tagName("input"));
 		for(WebElement webElement : webElements){
-			if(webElement.getAttribute("value").contains(value)){
+			if(webElement.getAttribute(attribute).contains(value)){
 				webElementReturned = webElement;
 			}
 			//System.out.println("-----> " + webElement.getAttribute("value"));

@@ -71,7 +71,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@When("^I fill in the name\\.$")
 	public void iFillInTheName() throws Throwable {
-	
+		
 	}
 
 	@Then("^I confirm the message\\.$")
