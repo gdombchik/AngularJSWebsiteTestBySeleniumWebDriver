@@ -22,4 +22,3 @@ Scenario:  Test Add Some Control.
 	And I check the values of the todo items.
 	Then I select the check box of the new todo item.
 	And I recheck the value of the todo items.
-	Then I close the AngularJS website.
