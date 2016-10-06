@@ -2,16 +2,22 @@ package com.cucumber.pageObject.angularJSWebsite;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LandingPage extends AbstractPage{
-
 	public LandingPage(WebDriver driver){
 		super(driver);
 	}
+
+	public WebElement getDownLoadAngularJSOneButton() {
+		return driver.findElement(By.cssSelector(".btn.btn-large.btn-primary.download-btn"));
+	}
 	
-	/*public ContactPage navigateToContactPage(String link){
-		driver.findElement(By.id(link.toLowerCase() + "_link")).click();
-		return new ContactPage(driver);
-	}*/
+	public DownloadAngularJSOnePage navigateToDownloadAngularJSOnePage(){
+		getDownLoadAngularJSOneButton().click();
+		return new DownloadAngularJSOnePage(driver);
+	}
+	
+	
 	
 }

@@ -6,6 +6,8 @@ Background:
 @angularJSWebsite
 Scenario:  Test basic components on the AngularJS home page.
 	When I confirm I am on the AngularJS website home page.
+	| Field | Value |
+  | DownLoadAngularJSOneButton  | Download AngularJS 1\n\n(1.5.8 / 1.2.30) |
 	Then I click on the Download AngularJS One button.
 	And I check the properties of the Download AngularJS One page.
 	Then I click on the Close button of the Download AngularJS One page.

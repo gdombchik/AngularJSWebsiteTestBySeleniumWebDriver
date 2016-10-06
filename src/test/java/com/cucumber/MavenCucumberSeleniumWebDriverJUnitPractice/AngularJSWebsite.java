@@ -1,19 +1,24 @@
 package com.cucumber.MavenCucumberSeleniumWebDriverJUnitPractice;
 
-import org.openqa.selenium.WebDriver;
+import java.util.List;
 
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageObject.angularJSWebsite.LandingPage;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.After;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class AngularJSWebsite extends AbstractPageStepDefinition{
-	
-	WebDriver driver = getWebdriver();
-	LandingPage landingPage;
+	private WebDriver driver = getWebdriver();
+	private LandingPage landingPage;
+	private DownloadAngularJSOnePage downloadAngularJSOnePage;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -28,18 +33,21 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 	
 	@When("^I confirm I am on the AngularJS website home page\\.$")
-	public void iConfirmIAmOnTheAngularJSWebsiteHomePage() throws Throwable {
-		
+	public void iConfirmIAmOnTheAngularJSWebsiteHomePage(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
+		WebElement downLoadAngularJSOneButton = landingPage.getDownLoadAngularJSOneButton(); 
+		System.out.println("--" + tableList.get(1).get(1) + "--");
+		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(tableList.get(1).get(1))); //Download AngularJS 1\n\n(1.5.8 / 1.2.30
 	}
 
 	@Then("^I click on the Download AngularJS One button\\.$")
 	public void iClickOnTheDownloadAngularJSOneButton() throws Throwable {
-
+		downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
 	}
 
 	@Then("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage() throws Throwable {
-	
+		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals("Download AngularJS"));
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
