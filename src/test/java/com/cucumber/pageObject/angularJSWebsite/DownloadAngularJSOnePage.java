@@ -15,15 +15,35 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 
 	//branch
 	public WebElement getBranch() {
-		//System.out.println("------>" + driver.findElements(By.tagName("button")).size());
 		return driver.findElement(By.cssSelector(".btn.branch-1-5-x"));
 	}
 	
 	//buildMinified
+	public WebElement getBuildMinified() {
+		return driver.findElement(By.cssSelector(".btn.minified"));
+	}
+	
 	//buildZip
+	public WebElement getBuildZip() {
+		return driver.findElement(By.cssSelector(".btn.zip"));
+	}
+	
 	//buildUncompressed
+	public WebElement getBuildUncompressed() {
+		return driver.findElement(By.cssSelector(".btn.uncompressed"));
+	}
+	
 	//cdn
+	public WebElement getCdn() {
+		return driver.findElement(By.id("cdnURL"));
+	}
+	
 	//getBower
+	public WebElement getBower() {
+		return driver.findElement(By.id("cdnURL"));
+	}
+	
+	
 	//getNpm
 	//extras
 	//previousVersions

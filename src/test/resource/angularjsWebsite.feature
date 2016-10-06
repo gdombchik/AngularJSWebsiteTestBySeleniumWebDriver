@@ -13,6 +13,10 @@ Scenario:  Test basic components on the AngularJS home page.
 	| Field | Value |
   | TitleLabel  | Download AngularJS |
   | Branch  | 1.5.x (stable) |
+  | Build Minified  | Minified |
+  | Build Zip  | Zip |
+  | Build Uncompressed  | Uncompressed |
+  | Cdn  | angular.min.js |
 
 	Then I click on the Close button of the Download AngularJS One page.
 
