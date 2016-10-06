@@ -19,6 +19,9 @@ Scenario:  Test basic components on the AngularJS home page.
   | Cdn  | angular.min.js |
   | Bower  | bower |
   | Npm  | npm |
+  | Extras  | Browse additional modules |
+  | Previous Versions  | Previous Versions |
+  | Download Button  | angular.min.js |
 
 	Then I click on the Close button of the Download AngularJS One page.
 

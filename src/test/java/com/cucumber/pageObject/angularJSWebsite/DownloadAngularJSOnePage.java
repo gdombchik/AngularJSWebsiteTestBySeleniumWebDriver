@@ -73,6 +73,23 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 		return driver.findElement(By.linkText("Previous Versions"));
 	}
 	
+	public WebElement getDownloadButton(){
+		return getLinkByAttributeValue("angular.min.js");
+	}
+	
+	//Return the link element filtered by value
+	private WebElement getLinkByAttributeValue(String value){
+		WebElement webElementReturned=null;
+		List<WebElement> webElements = driver.findElements(By.cssSelector(".btn.btn-primary.btn-large"));
+		for(WebElement webElement : webElements){
+			System.out.println("-----> " + webElement.getAttribute("href"));
+			if(webElement.getAttribute("href").contains(value)){
+				webElementReturned = webElement;
+			}
+		}
+		return webElementReturned;
+	};
+	
 	
 	//getDownloadButton
 	//getCloseButton
