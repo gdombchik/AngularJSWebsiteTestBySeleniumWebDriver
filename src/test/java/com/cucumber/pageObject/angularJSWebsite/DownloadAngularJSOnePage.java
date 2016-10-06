@@ -63,10 +63,17 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 		return webElementReturned;
 	};
 	
-	
-	//
 	//extras
+	public WebElement getExtras() {
+		return driver.findElement(By.linkText("Browse additional modules"));
+	}
+	
 	//previousVersions
+	public WebElement getPreviousVersions() {
+		return driver.findElement(By.linkText("Previous Versions"));
+	}
+	
+	
 	//getDownloadButton
 	//getCloseButton
 	
