@@ -35,6 +35,8 @@ Scenario:  Test basic components on the AngularJS home page.
   | Name  | Greg |
 	
 	Then I confirm the message.
+	| Field | Value |
+  | Name Message  | Hello Greg! |
 
 @angularJSWebsiteTestAddSomeControl
 Scenario:  Test Add Some Control.

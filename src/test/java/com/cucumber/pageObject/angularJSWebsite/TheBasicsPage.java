@@ -14,7 +14,11 @@ public class TheBasicsPage extends AbstractPage {
 		super(driver);
 	}
 
-	public WebElement getName() {
+	public WebElement getNameInputTag() {
 		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"),"placeholder","Enter a name here");
+	}
+	
+	public WebElement getNameMessage() {
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("h1"),"class","ng-bind");
 	}
 }
