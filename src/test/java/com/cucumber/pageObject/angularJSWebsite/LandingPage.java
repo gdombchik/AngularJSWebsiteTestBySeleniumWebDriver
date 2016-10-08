@@ -22,4 +22,7 @@ public class LandingPage extends AbstractPage{
 		return new TheBasicsPage(driver);
 	}
 	
+	public AddSomeControlPage navigateToAddSomeControlPage(){
+		return new AddSomeControlPage(driver);
+	}
 }

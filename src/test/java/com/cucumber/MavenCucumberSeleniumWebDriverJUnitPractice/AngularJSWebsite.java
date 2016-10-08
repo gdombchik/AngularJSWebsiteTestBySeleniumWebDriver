@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.cucumber.pageObject.angularJSWebsite.AddSomeControlPage;
 import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageObject.angularJSWebsite.LandingPage;
 import com.cucumber.pageObject.angularJSWebsite.TheBasicsPage;
@@ -22,6 +23,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private DownloadAngularJSOnePage downloadAngularJSOnePage;
 	private WebElement downloadAngularJSOnePageCloseButton;
 	private TheBasicsPage theBasicsPage;
+	private AddSomeControlPage addSomeControlPage;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -44,14 +46,14 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Download AngularJS One button\\.$")
 	public void iClickOnTheDownloadAngularJSOneButton() throws Throwable {
-		downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
+		//downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
 	}
 
 	@Then("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
 		List<List<String>> tableList = table.raw();
 		
-		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
+		/*Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
 		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(tableList.get(2).get(1)));  //1.5.x (stable)
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(tableList.get(3).get(1))); //Minified
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(tableList.get(4).get(1))); //Zip		
@@ -63,12 +65,12 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(tableList.get(10).get(1))); //Previous Versions
 		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(tableList.get(11).get(1)));  //angular.min.js
 		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
-		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×
+		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×*/
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		downloadAngularJSOnePageCloseButton.click();
+		//downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
@@ -88,27 +90,36 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 
 	@When("^I confirm the values of the current todo items\\.$")
-	public void iConfirmTheValuesOfTheCurrentTodoItems() throws Throwable {
-	
+	public void iConfirmTheValuesOfTheCurrentTodoItems(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
+		
+		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
+		
+		List<WebElement> webElements = addSomeControlPage.getTodoLabels();
+		int i = 0;
+		for(WebElement webElement : webElements){
+			Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
+			i++;
+		}
 	}
 
 	@Then("^I add a new todo item\\.$")
 	public void iAddANewTodoItem() throws Throwable {
-	
+		
 	}
 
 	@Then("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems() throws Throwable {
-	
+		
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
 	public void iSelectTheCheckBoxOfTheNewTodoItem() throws Throwable {
-	
+		
 	}
 
 	@Then("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems() throws Throwable {
-	
+		
 	}
 }
