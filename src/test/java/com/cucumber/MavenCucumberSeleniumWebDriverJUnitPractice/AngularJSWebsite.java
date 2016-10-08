@@ -93,7 +93,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels());
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 	
 	@Then("^I confirm the todo checkboxes that are selected\\.$")
@@ -116,7 +116,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels());
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
