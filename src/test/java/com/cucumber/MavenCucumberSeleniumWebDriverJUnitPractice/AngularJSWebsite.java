@@ -89,28 +89,34 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(theBasicsPage.getNameMessage().getText().equals(tableList.get(1).get(1)));
 	}
 
-	@When("^I confirm the values of the current todo items\\.$")
-	public void iConfirmTheValuesOfTheCurrentTodoItems(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
-		
+	@When("^I confirm the labels of the current todo items\\.$")
+	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		List<WebElement> webElements = addSomeControlPage.getTodoLabels();
-		int i = 0;
-		for(WebElement webElement : webElements){
-			Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
-			i++;
-		}
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels());
+	}
+	
+	@Then("^I confirm the todo checkboxes that are selected\\.$")
+	public void iConfirmTheTodoCheckboxesThatAreSelected() throws Throwable {
+	    
+	}
+
+	@Then("^I confirm the todo checkboxes that are not selected\\.$")
+	public void iConfirmTheTodoCheckboxesThatAreNotSelected() throws Throwable {
+	    
 	}
 
 	@Then("^I add a new todo item\\.$")
-	public void iAddANewTodoItem() throws Throwable {
+	public void iAddANewTodoItem(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
 		
+		addSomeControlPage.addNewTodoText().sendKeys(tableList.get(1).get(1));;
+		addSomeControlPage.addNewTodoButton().click();
 	}
 
 	@Then("^I check the values of the todo items\\.$")
-	public void iCheckTheValuesOfTheTodoItems() throws Throwable {
-		
+	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels());
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
@@ -121,5 +127,14 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	@Then("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems() throws Throwable {
 		
+	}
+	
+	private void checkConfirmTheValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels){
+		int i = 0;
+		for(WebElement webElement : todoLabels){
+			Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
+			//System.out.println("-----> " + webElement.getText());
+			i++;
+		}		
 	}
 }

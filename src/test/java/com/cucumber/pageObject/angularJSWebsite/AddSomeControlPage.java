@@ -60,4 +60,12 @@ public class AddSomeControlPage extends AbstractPage {
 		return driver.findElements(By.xpath("//label[@class='checkbox']/*"));
 	}
 	
+	public WebElement addNewTodoText(){
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"), "placeholder", "add new todo here");
+	}
+	
+	public WebElement addNewTodoButton(){
+		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"), "type", "submit");
+	}
+	
 }

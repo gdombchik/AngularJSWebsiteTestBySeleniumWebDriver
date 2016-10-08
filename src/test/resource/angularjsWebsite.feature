@@ -40,11 +40,21 @@ Scenario:  Test basic components on the AngularJS home page.
 
 @angularJSWebsiteTestAddSomeControl
 Scenario:  Test Add Some Control.
-	When I confirm the values of the current todo items.
+	When I confirm the labels of the current todo items.
 	| Field | Value |
   | First Todo Checkbox  | learn angular |
   | Second Todo Checkbox  | build an angular app |
+  Then I confirm the todo checkboxes that are selected.
+  And  I confirm the todo checkboxes that are not selected.
 	Then I add a new todo item.
+	| Field | Value |
+  | New Todo List Item  | Go to the dentist |
+
 	And I check the values of the todo items.
+	| Field | Value |
+  | First Todo Checkbox  | learn angular |
+  | Second Todo Checkbox  | build an angular app |
+	| New Todo List Item  | Go to the dentist |
+	
 	Then I select the check box of the new todo item.
 	And I recheck the value of the todo items.
