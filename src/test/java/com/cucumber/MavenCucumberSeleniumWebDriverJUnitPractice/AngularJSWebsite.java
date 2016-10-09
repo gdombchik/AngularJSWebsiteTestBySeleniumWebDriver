@@ -70,7 +70,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		//downloadAngularJSOnePageCloseButton.click();
+		downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
@@ -93,28 +93,16 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		//checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 	
 	@Then("^I confirm the todo checkboxes that are selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreSelected(DataTable table) throws Throwable {
-		/*List<WebElement> webElements = addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_CHECKBOX);
-		
-		int i = 0;
-		for(WebElement webElement : webElements){
-			System.out.println("todo checkboxes " + webElement.getAttribute("class"));
-			i++;
-		}*/
-		
-		//checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL),true);
 		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 
 	@Then("^I confirm the todo checkboxes that are not selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreNotSelected(DataTable table) throws Throwable {		
-		////This WebElements are technically the label and not the checkbox.  
-		//But i want to return the text name of the checkbox so I am returning the labels and not the checkboxes.
-		//checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL),false);
 		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
 	}
 
@@ -132,32 +120,20 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
-	public void iSelectTheCheckBoxOfTheNewTodoItem() throws Throwable {
-		
+	public void iSelectTheCheckBoxOfTheNewTodoItem(DataTable table) throws Throwable {
+		List<List<String>> tableList = table.raw();
+		addSomeControlPage.selectTotoCheckBoxes(tableList);
 	}
 
 	@Then("^I recheck the value of the todo items\\.$")
-	public void iRecheckTheValueOfTheTodoItems() throws Throwable {
-		
+	public void iRecheckTheValueOfTheTodoItems(DataTable table) throws Throwable {
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 	
 	private void checkConfirmTheValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels){
 		int i = 1;
 		for(WebElement webElement : todoLabels){
 			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
-			//System.out.println("-----> " + webElement.getText());
-			i++;
-		}		
-	}
-	private void checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels,boolean checked){
-		int i = 1;
-		for(WebElement webElement : todoLabels){
-			if(webElement.getAttribute("class").contains(Boolean.toString(checked).toString())){
-				//System.out.println(i + " " + webElement.getAttribute("class") + " " + Boolean.toString(checked).toString());
-				Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
-			}
-			//Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
-			//System.out.println("-----> " + webElement.getAttribute("class").contains(Boolean.toString(checked).toString()));
 			i++;
 		}		
 	}

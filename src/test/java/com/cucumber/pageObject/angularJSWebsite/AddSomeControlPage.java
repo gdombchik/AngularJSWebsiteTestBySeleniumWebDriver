@@ -13,26 +13,29 @@ public class AddSomeControlPage extends AbstractPage {
 	WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 	public static final String TODO_ITEM_LABEL = "label";
 	public static final String TODO_ITEM_CHECKBOX = "checkbox";
+	public static final String TODO_ITEM_BOTH = "both";
 	  
 	public AddSomeControlPage(WebDriver driver){
 		super(driver);
 	}
 	
-	public List<WebElement> getTodoCheckBoxesOrLabels(String labelOrCheckbox) {
+	public List<WebElement> getTodoCheckBoxesOrLabels(String labelOrCheckboxOrBoth) {
 		List<WebElement> todoLabelsWebElements = new ArrayList<WebElement>();
 		int i = 0;
 		List<WebElement> webElements = getTodoCheckBoxesAndLabels();
 		for(WebElement webElement : webElements){
-			if(labelOrCheckbox.equals("label")){
+			if(labelOrCheckboxOrBoth.equals(TODO_ITEM_LABEL)){
 				//labels are odd index
 				if(i % 2 != 0){
 					todoLabelsWebElements.add(webElement);
 				}
-			}else if(labelOrCheckbox.equals("checkbox")){
+			}else if(labelOrCheckboxOrBoth.equals(TODO_ITEM_CHECKBOX)){
 				//checkbox are even index
 				if(i % 2 == 0){
 					todoLabelsWebElements.add(webElement);
 				}
+			}else if(labelOrCheckboxOrBoth.equals(TODO_ITEM_BOTH)){
+				todoLabelsWebElements.add(webElement);
 			}
 			i++;
 		}
@@ -90,5 +93,20 @@ public class AddSomeControlPage extends AbstractPage {
 		
 		return webElementReturned;
 	}
+	
+	public void selectTotoCheckBoxes(List<List<String>> tableList){
+		List<WebElement> webElements = getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_BOTH);
+		
+		int x=1; //Cucumber TableList
+		for(int i=0;i<webElements.size();i++){
+			if(i % 2 != 0){
+				if(tableList.get(x).get(1).equals(webElements.get(i).getText())){
+					//System.out.println("The table ==> " + webElements.get(i)getText());
+					webElements.get(i-1).click(); //checkbox is one WebElement before label
+				}
+			}
+			i++;
+		}
+	} 
 	
 }

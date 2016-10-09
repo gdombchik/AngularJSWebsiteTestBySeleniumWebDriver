@@ -55,4 +55,9 @@ Scenario:  Test Add Some Control.
   | Second Todo Checkbox  | build an angular app |
 	| New Todo List Item  | Go to the dentist |
 	Then I select the check box of the new todo item.
+	| Field | Value |
+  | New Todo List Item  | Go to the dentist |
 	And I recheck the value of the todo items.
+	| Field | Value |
+  | First Todo Checkbox  | learn angular |
+  | New Todo List Item  | Go to the dentist |
