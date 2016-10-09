@@ -17,12 +17,8 @@ public class AddSomeControlPage extends AbstractPage {
 	public AddSomeControlPage(WebDriver driver){
 		super(driver);
 	}
-
-	/*public List<WebElement> getTodoCheckBoxes() {
-		//checkboxes are even index
-	}*/
 	
-	public List<WebElement> getTodoLabels(String labelOrCheckbox) {
+	public List<WebElement> getTodoCheckBoxesOrLabels(String labelOrCheckbox) {
 		List<WebElement> todoLabelsWebElements = new ArrayList<WebElement>();
 		int i = 0;
 		List<WebElement> webElements = getTodoCheckBoxesAndLabels();
@@ -34,7 +30,7 @@ public class AddSomeControlPage extends AbstractPage {
 				}
 			}else if(labelOrCheckbox.equals("checkbox")){
 				//checkbox are even index
-				if(i % 1 != 0){
+				if(i % 2 == 0){
 					todoLabelsWebElements.add(webElement);
 				}
 			}
@@ -75,6 +71,24 @@ public class AddSomeControlPage extends AbstractPage {
 	
 	public WebElement addNewTodoButton(){
 		return webDriverUtils.getWebElementByLocatorFilteredByAttributeValue(By.tagName("input"), "type", "submit");
+	}
+	
+	//this works but takes too long
+	/*public List<WebElement> getTodoCheckBoxesSelectedOrNotSelectedTodo(boolean checked){
+		return  webDriverUtils.getWebElementsByLocatorFilteredByAttributeValue(By.tagName("span"),"class","done-" + Boolean.toString(checked).toString());
+	}*/
+	
+	public List<WebElement> getTodoCheckBoxesSelectedOrNotSelectedTodo(boolean checked){
+		List<WebElement> webElementReturned = new ArrayList<WebElement>();
+		List<WebElement> webElements = getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL);
+		
+		for(WebElement webElement : webElements){
+			if(webElement.getAttribute("class").contains(Boolean.toString(checked).toString())){
+				webElementReturned.add(webElement);
+			}
+		}
+		
+		return webElementReturned;
 	}
 	
 }

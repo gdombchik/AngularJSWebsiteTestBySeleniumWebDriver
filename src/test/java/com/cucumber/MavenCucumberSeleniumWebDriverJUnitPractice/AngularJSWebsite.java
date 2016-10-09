@@ -46,14 +46,14 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Download AngularJS One button\\.$")
 	public void iClickOnTheDownloadAngularJSOneButton() throws Throwable {
-		//downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
+		downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
 	}
 
 	@Then("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
 		List<List<String>> tableList = table.raw();
 		
-		/*Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
+		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
 		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(tableList.get(2).get(1)));  //1.5.x (stable)
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(tableList.get(3).get(1))); //Minified
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(tableList.get(4).get(1))); //Zip		
@@ -65,7 +65,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(tableList.get(10).get(1))); //Previous Versions
 		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(tableList.get(11).get(1)));  //angular.min.js
 		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
-		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×*/
+		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
@@ -93,17 +93,29 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		//checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 	
 	@Then("^I confirm the todo checkboxes that are selected\\.$")
-	public void iConfirmTheTodoCheckboxesThatAreSelected() throws Throwable {
-	    
+	public void iConfirmTheTodoCheckboxesThatAreSelected(DataTable table) throws Throwable {
+		/*List<WebElement> webElements = addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_CHECKBOX);
+		
+		int i = 0;
+		for(WebElement webElement : webElements){
+			System.out.println("todo checkboxes " + webElement.getAttribute("class"));
+			i++;
+		}*/
+		
+		//checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL),true);
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 
 	@Then("^I confirm the todo checkboxes that are not selected\\.$")
-	public void iConfirmTheTodoCheckboxesThatAreNotSelected() throws Throwable {
-	    
+	public void iConfirmTheTodoCheckboxesThatAreNotSelected(DataTable table) throws Throwable {		
+		////This WebElements are technically the label and not the checkbox.  
+		//But i want to return the text name of the checkbox so I am returning the labels and not the checkboxes.
+		//checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL),false);
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
 	}
 
 	@Then("^I add a new todo item\\.$")
@@ -116,7 +128,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
@@ -130,10 +142,22 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	}
 	
 	private void checkConfirmTheValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels){
-		int i = 0;
+		int i = 1;
 		for(WebElement webElement : todoLabels){
-			Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
+			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
 			//System.out.println("-----> " + webElement.getText());
+			i++;
+		}		
+	}
+	private void checkConfirmTheCheckedVsNotCheckedValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels,boolean checked){
+		int i = 1;
+		for(WebElement webElement : todoLabels){
+			if(webElement.getAttribute("class").contains(Boolean.toString(checked).toString())){
+				//System.out.println(i + " " + webElement.getAttribute("class") + " " + Boolean.toString(checked).toString());
+				Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
+			}
+			//Assert.assertTrue(webElement.getText().equals(tableList.get((i+1)).get(1)));
+			//System.out.println("-----> " + webElement.getAttribute("class").contains(Boolean.toString(checked).toString()));
 			i++;
 		}		
 	}

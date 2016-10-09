@@ -2,6 +2,7 @@ package com.cucumber.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -58,6 +59,17 @@ public class WebDriverUtils{
 				webElementReturned = webElement;
 			}
 			//System.out.println("-----> " + webElement.getAttribute("value"));
+		}
+		return webElementReturned;
+	};
+	
+	public List<WebElement> getWebElementsByLocatorFilteredByAttributeValue(By locator,String attribute, String attributeValue){
+		List<WebElement> webElementReturned = new ArrayList<WebElement>();
+		List<WebElement> webElements = driver.findElements(locator);
+		for(WebElement webElement : webElements){
+			if(webElement.getAttribute(attribute).contains(attributeValue)){
+				webElementReturned.add(webElement);
+			}
 		}
 		return webElementReturned;
 	};
