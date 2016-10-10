@@ -1,4 +1,4 @@
-package com.cucumber.MavenCucumberSeleniumWebDriverJUnitPractice;
+package com.cucumber;
 
 import org.junit.runner.RunWith;
 
