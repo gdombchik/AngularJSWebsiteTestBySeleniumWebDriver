@@ -53,7 +53,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
 		List<List<String>> tableList = table.raw();
 		
-		/*Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
+		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
 		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(tableList.get(2).get(1)));  //1.5.x (stable)
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(tableList.get(3).get(1))); //Minified
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(tableList.get(4).get(1))); //Zip		
@@ -66,11 +66,11 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(tableList.get(11).get(1)));  //angular.min.js
 		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
 		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×
-*/	}
+	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		//downloadAngularJSOnePageCloseButton.click();
+		downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
