@@ -13,8 +13,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
-import com.cucumber.propertyManager.PropertyManager;
+import com.cucumber.configuration.AppConfig;
+import com.cucumber.service.FileService;
 
 
 public class WebDriverUtils{
@@ -28,10 +31,10 @@ public class WebDriverUtils{
 	public void takeStreenShot(String screenShotName){
 		File screenShotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			PropertyManager propertyManager = new PropertyManager();
-			propertyManager.generateProperty();
+			AbstractApplicationContext  context = new AnnotationConfigApplicationContext(AppConfig.class);
+			FileService service = (FileService) context.getBean("fileService");
 			//FileUtils.copyFile(screenShotFile, new File("/Users/gregorydombchik/Documents/workspace_luna/MavenJunitPrototypePractice/screenshots/" + screenShotName + ".png"));
-			FileUtils.copyFile(screenShotFile, new File(propertyManager.getScreenShot() + screenShotName + ".png"));
+			FileUtils.copyFile(screenShotFile, new File(service.getScreenShot() + screenShotName + ".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

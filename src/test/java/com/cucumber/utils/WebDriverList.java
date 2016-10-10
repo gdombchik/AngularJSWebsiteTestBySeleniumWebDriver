@@ -1,16 +1,15 @@
 package com.cucumber.utils;
 
-import java.io.File;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-//import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
-import com.cucumber.propertyManager.PropertyManager;
-//import com.cucumber.propertyManager.PropertyManager;
+import com.cucumber.configuration.AppConfig;
+import com.cucumber.service.FileService;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 public enum WebDriverList {
@@ -38,10 +37,9 @@ public enum WebDriverList {
 			case ChromeDriver:
 				return new ChromeDriver();
 			case PhantomJSDriver:
-				PropertyManager propertyManager = new PropertyManager();
-				propertyManager.generateProperty();
-				File src = new File(propertyManager.getPhantomJSDriver());
-			    System.setProperty("phantomjs.binary.path", src.getAbsolutePath());
+				AbstractApplicationContext  context = new AnnotationConfigApplicationContext(AppConfig.class);
+				FileService service = (FileService) context.getBean("fileService");
+				System.setProperty("phantomjs.binary.path", service.getPhantomJSDriver());
 			    return new PhantomJSDriver();
 			default:
 				return new FirefoxDriver();

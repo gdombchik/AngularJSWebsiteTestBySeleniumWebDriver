@@ -1,6 +1,6 @@
 package com.cucumber.service;
 
 public interface FileService {
-
-	void readValues();
+	String getPhantomJSDriver();
+	String getScreenShot();
 }
