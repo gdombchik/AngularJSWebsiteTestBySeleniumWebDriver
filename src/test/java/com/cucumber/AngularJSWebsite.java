@@ -1,6 +1,7 @@
 package com.cucumber;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -39,9 +40,9 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	
 	@When("^I confirm I am on the AngularJS website home page\\.$")
 	public void iConfirmIAmOnTheAngularJSWebsiteHomePage(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
 		WebElement downLoadAngularJSOneButton = landingPage.getDownLoadAngularJSOneButton(); 
-		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(tableList.get(1).get(1))); //Download AngularJS 1\n\n(1.5.8 / 1.2.30
+		Map<String,String> data = table.asMap(String.class,String.class);
+		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(data.get("DownLoad Angular JS One Button"))); //Download AngularJS 1\n\n(1.5.8 / 1.2.30
 	}
 
 	@Then("^I click on the Download AngularJS One button\\.$")
@@ -51,21 +52,21 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
+		Map<String,String> data = table.asMap(String.class,String.class);
 		
-		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(tableList.get(1).get(1))); //Download AngularJS
-		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(tableList.get(2).get(1)));  //1.5.x (stable)
-		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(tableList.get(3).get(1))); //Minified
-		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(tableList.get(4).get(1))); //Zip		
-		Assert.assertTrue(downloadAngularJSOnePage.getBuildUncompressed().getText().equals(tableList.get(5).get(1))); //Uncompressed
-		Assert.assertTrue(downloadAngularJSOnePage.getCdn().getAttribute("value").contains(tableList.get(6).get(1))); //angular.min.js	
-		Assert.assertTrue(downloadAngularJSOnePage.getBower().getAttribute("value").contains(tableList.get(7).get(1))); //bower
-		Assert.assertTrue(downloadAngularJSOnePage.getNpm().getAttribute("value").contains(tableList.get(8).get(1))); //npm
-		Assert.assertTrue(downloadAngularJSOnePage.getExtras().getText().equals(tableList.get(9).get(1))); //Browse additional modules
-		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(tableList.get(10).get(1))); //Previous Versions
-		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(tableList.get(11).get(1)));  //angular.min.js
+		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(data.get("Title Label"))); //Download AngularJS
+		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(data.get("Branch")));  //1.5.x (stable)
+		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(data.get("Build Minified"))); //Minified
+		Assert.assertTrue(downloadAngularJSOnePage.getBuildZip().getText().equals(data.get("Build Zip"))); //Zip		
+		Assert.assertTrue(downloadAngularJSOnePage.getBuildUncompressed().getText().equals(data.get("Build Uncompressed"))); //Uncompressed
+		Assert.assertTrue(downloadAngularJSOnePage.getCdn().getAttribute("value").contains(data.get("Cdn"))); //angular.min.js	
+		Assert.assertTrue(downloadAngularJSOnePage.getBower().getAttribute("value").contains(data.get("Bower"))); //bower
+		Assert.assertTrue(downloadAngularJSOnePage.getNpm().getAttribute("value").contains(data.get("Npm"))); //npm
+		Assert.assertTrue(downloadAngularJSOnePage.getExtras().getText().equals(data.get("Extras"))); //Browse additional modules
+		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(data.get("Previous Versions"))); //Previous Versions
+		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(data.get("Download Button")));  //angular.min.js
 		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
-		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(tableList.get(12).get(1))); //×
+		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(data.get("Close Button"))); //×
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
@@ -75,18 +76,18 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@When("^I fill in the name\\.$")
 	public void iFillInTheName(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
+		Map<String,String> data = table.asMap(String.class,String.class);
 		
 		theBasicsPage = landingPage.navigateToTheBasicsPage();
 		WebElement theBasicsName = theBasicsPage.getNameInputTag();
-		theBasicsName.sendKeys((tableList.get(1).get(1)));
+		theBasicsName.sendKeys((data.get("Name"))); //Greg
 	}
 
 	@Then("^I confirm the message\\.$")
 	public void iConfirmTheMessage(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
+		Map<String,String> data = table.asMap(String.class,String.class);
 		
-		Assert.assertTrue(theBasicsPage.getNameMessage().getText().equals(tableList.get(1).get(1)));
+		Assert.assertTrue(theBasicsPage.getNameMessage().getText().equals(data.get("Name Message")));  //Hello Greg!
 	}
 
 	@When("^I confirm the labels of the current todo items\\.$")
