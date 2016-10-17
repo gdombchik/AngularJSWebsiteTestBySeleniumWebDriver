@@ -12,7 +12,7 @@ public abstract class AbstractPageStepDefinition {
 	public WebDriver getWebdriver() {
 		//web driver is null or webdriver.quit (not webdriver.close)
 		if(webdriver==null || ((RemoteWebDriver)webdriver).getSessionId() == null){
-			webdriver = WebDriverList.PhantomJSDriver.driverType();
+			webdriver = WebDriverList.PHANTOMJS.driverType();
 		}
 		return webdriver;
 	}
