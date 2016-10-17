@@ -1,5 +1,6 @@
 package com.cucumber;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		downloadAngularJSOnePageCloseButton.click();
+		//downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
@@ -94,30 +95,30 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 	
 	@Then("^I confirm the todo checkboxes that are selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreSelected(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 
 	@Then("^I confirm the todo checkboxes that are not selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreNotSelected(DataTable table) throws Throwable {		
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
 	}
 
 	@Then("^I add a new todo item\\.$")
 	public void iAddANewTodoItem(DataTable table) throws Throwable {
-		List<List<String>> tableList = table.raw();
+		Map<String,String> data = table.asMap(String.class,String.class);
 		
-		addSomeControlPage.addNewTodoText().sendKeys(tableList.get(1).get(1));;
+		addSomeControlPage.addNewTodoText().sendKeys(data.get("New Todo List Item"));  //Go to the dentist
 		addSomeControlPage.addNewTodoButton().click();
 	}
 
 	@Then("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
@@ -128,10 +129,16 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItems(table.raw(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 	
-	private void checkConfirmTheValuesOfTheCurrentTodoItems(List<List<String>> tableList,List<WebElement> todoLabels){
+	private void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
+		for(WebElement webElement : todoLabels){
+			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));
+		}
+	}
+	
+	private void checkConfirmTheValuesOfTheCurrentTodoItemsByList(List<List<String>> tableList,List<WebElement> todoLabels){
 		int i = 1;
 		for(WebElement webElement : todoLabels){
 			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
