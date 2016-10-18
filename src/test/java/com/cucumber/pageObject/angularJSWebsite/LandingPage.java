@@ -25,4 +25,8 @@ public class LandingPage extends AbstractPage{
 	public AddSomeControlPage navigateToAddSomeControlPage(){
 		return new AddSomeControlPage(driver);
 	}
+	
+	public WireUpABackendPage navigateToWireUpABackendPage(){
+		return new WireUpABackendPage(driver);
+	}
 }

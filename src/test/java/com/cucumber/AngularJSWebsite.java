@@ -12,6 +12,7 @@ import com.cucumber.pageObject.angularJSWebsite.AddSomeControlPage;
 import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageObject.angularJSWebsite.LandingPage;
 import com.cucumber.pageObject.angularJSWebsite.TheBasicsPage;
+import com.cucumber.pageObject.angularJSWebsite.WireUpABackendPage;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.After;
@@ -26,6 +27,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WebElement downloadAngularJSOnePageCloseButton;
 	private TheBasicsPage theBasicsPage;
 	private AddSomeControlPage addSomeControlPage;
+	private WireUpABackendPage wireUpABackendPage;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -72,7 +74,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		//downloadAngularJSOnePageCloseButton.click();
+		downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
@@ -130,6 +132,51 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	@Then("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems(DataTable table) throws Throwable {
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
+	}
+	
+	@When("^I confirm the labels of the current JavaScript Projects\\.$")
+	public void iConfirmTheLabelsOfTheCurrentJavaScriptProjects(DataTable table) throws Throwable {
+		wireUpABackendPage = landingPage.navigateToWireUpABackendPage();
+		
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectLinks());
+	}
+	
+	@Then("^I confirm the labels of the current JavaScript Project Descriptions\\.$")
+	public void iConfirmTheLabelsOfTheCurrentJavaScriptProjectDescriptions(DataTable table) throws Throwable {
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectDescriptions());
+	}
+	
+	@Then("^Search for, update, and confirm a project values\\.$")
+	public void searchForUpdateAndConfirmAProjectValues(DataTable table) throws Throwable {
+		//Enter GWT in the Search Input Box
+		wireUpABackendPage.getSearchInputTag().sendKeys(table.asMap(String.class, String.class).get("GWT_Current_Name"));
+		
+		//Click the GWT Edit link
+		wireUpABackendPage.getJavaScriptProjectEditLinks().get(0).click();
+		
+		//Clear and Update the Project Name, Website, and Description Input Boxes
+		wireUpABackendPage.getJavaScriptProjectsEditName().clear();
+		wireUpABackendPage.getJavaScriptProjectsEditWebsite().clear();
+		wireUpABackendPage.getJavaScriptProjectsEditDescription().clear();
+		
+		String gwtUpdatedName = table.asMap(String.class, String.class).get("GWT_Updated_Name");
+		String gwtUpdatedWebsite = table.asMap(String.class, String.class).get("GWT_Updated_Website");
+		String gwtUpdatedDescription = table.asMap(String.class, String.class).get("GWT_Updated_Description");
+		
+		wireUpABackendPage.getJavaScriptProjectsEditName().sendKeys(gwtUpdatedName);
+		wireUpABackendPage.getJavaScriptProjectsEditWebsite().sendKeys(gwtUpdatedWebsite);
+		wireUpABackendPage.getJavaScriptProjectsEditDescription().sendKeys(gwtUpdatedDescription);
+		
+		//Click the Save Button
+		wireUpABackendPage.getJavaScriptProjectsEditSaveButton().click();
+		
+		//Search for Updated GWT Project Name
+		wireUpABackendPage.getSearchInputTag().sendKeys(gwtUpdatedName);
+		
+		//Confirm JavaScript Project labels has been updated
+		Assert.assertTrue(wireUpABackendPage.getJavaScriptProjectLinks().get(0).getText().equals(gwtUpdatedName)); //Project Link
+		Assert.assertTrue(wireUpABackendPage.getJavaScriptProjectLinks().get(0).getAttribute("href").equals(gwtUpdatedWebsite)); //href value of the Project Link
+		Assert.assertTrue(wireUpABackendPage.getJavaScriptProjectDescriptions().get(0).getText().equals(gwtUpdatedDescription)); //Project Description
 	}
 	
 	private void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
