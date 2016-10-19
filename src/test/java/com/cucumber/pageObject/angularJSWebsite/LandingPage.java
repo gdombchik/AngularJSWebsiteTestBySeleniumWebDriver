@@ -29,4 +29,8 @@ public class LandingPage extends AbstractPage{
 	public WireUpABackendPage navigateToWireUpABackendPage(){
 		return new WireUpABackendPage(driver);
 	}
+	
+	public CreateComponentsPage navigateToCreateComponentsPage(){
+		return new CreateComponentsPage(driver);
+	}
 }

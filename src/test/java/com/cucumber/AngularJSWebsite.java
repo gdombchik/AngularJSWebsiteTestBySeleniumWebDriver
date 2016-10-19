@@ -3,12 +3,14 @@ package com.cucumber;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.cucumber.pageObject.angularJSWebsite.AddSomeControlPage;
+import com.cucumber.pageObject.angularJSWebsite.CreateComponentsPage;
 import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageObject.angularJSWebsite.LandingPage;
 import com.cucumber.pageObject.angularJSWebsite.TheBasicsPage;
@@ -19,6 +21,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 
 public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WebDriver driver = getWebdriver();
@@ -28,6 +31,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private TheBasicsPage theBasicsPage;
 	private AddSomeControlPage addSomeControlPage;
 	private WireUpABackendPage wireUpABackendPage;
+	private CreateComponentsPage createComponentsPage;
 	
 	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
@@ -53,7 +57,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
 	}
 
-	@Then("^I check the properties of the Download AngularJS One page\\.$")
+	@And("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
 		Map<String,String> data = table.asMap(String.class,String.class);
 		
@@ -105,7 +109,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 
-	@Then("^I confirm the todo checkboxes that are not selected\\.$")
+	@And("^I confirm the todo checkboxes that are not selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreNotSelected(DataTable table) throws Throwable {		
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
 	}
@@ -118,7 +122,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		addSomeControlPage.addNewTodoButton().click();
 	}
 
-	@Then("^I check the values of the todo items\\.$")
+	@And("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
@@ -129,7 +133,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		addSomeControlPage.selectTotoCheckBoxes(tableList);
 	}
 
-	@Then("^I recheck the value of the todo items\\.$")
+	@And("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems(DataTable table) throws Throwable {
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
@@ -146,7 +150,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectDescriptions());
 	}
 	
-	@Then("^Search for, update, and confirm a project values\\.$")
+	@And("^Search for, update, and confirm a project values\\.$")
 	public void searchForUpdateAndConfirmAProjectValues(DataTable table) throws Throwable {
 		//Enter GWT in the Search Input Box
 		wireUpABackendPage.getSearchInputTag().sendKeys(table.asMap(String.class, String.class).get("GWT_Current_Name"));
@@ -179,9 +183,19 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(wireUpABackendPage.getJavaScriptProjectDescriptions().get(0).getText().equals(gwtUpdatedDescription)); //Project Description
 	}
 	
+	@When("^I confirm the current locales\\.$")
+	public void iConfirmTheCurrentLocales(DataTable table) throws Throwable {
+		CreateComponentsPage createComponentsPage = landingPage.navigateToCreateComponentsPage();
+		
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getCurrentLocales());
+	}
+
+	
 	private void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
+		Assert.assertNotNull(todoLabels);  //check the WebElement List is not null
+		Assert.assertNotEquals(todoLabels.size(), 0);  //check the WebElement List is not zero
 		for(WebElement webElement : todoLabels){
-			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));
+			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));  //check the WebElement List exists in the Cucumber Datatable Map
 		}
 	}
 	

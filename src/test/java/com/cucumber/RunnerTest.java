@@ -11,7 +11,11 @@ import cucumber.api.junit.Cucumber;
 		//plugin={"pretty","html:target/html/"},
 		plugin={"pretty","json:target/json/output.json","html:target/html/"},
 		features={"src/test/resources/"}
-		,tags={"@angularJSWebsite,@angularJSWebsiteTestTheBasics,@angularJSWebsiteTestAddSomeControl,@angularJSWebsiteTestWireUpABackend"} //using the tags keyword creates a test suite where we can specify the features to run
+		//using the tags keyword creates a test suite where we can specify the features to run
+		,tags={"@angularJSWebsite,@angularJSWebsiteTestTheBasics,"
+				+ "@angularJSWebsiteTestAddSomeControl,"
+				+ "@angularJSWebsiteTestWireUpABackend,"
+				+ "@angularJSWebsiteTestCreateComponents"} 
 )	
 
 public class RunnerTest {
