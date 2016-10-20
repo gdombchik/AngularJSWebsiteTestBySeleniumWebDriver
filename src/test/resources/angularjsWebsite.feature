@@ -103,7 +103,21 @@ Feature: To test the AngularJS website home page.
   		
 	@angularJSWebsiteTestCreateComponents
   Scenario: Test Wire Create Components.
-  	When I confirm the current locales.
+  	When I confirm the locales.
   		| Field 	    	 	| Value            |
   		| United States 	| US               |
-  		| Slovakia        | SK               |  		
+  		| Slovakia        | SK               |
+  	Then I confirm the localization values for United States.	  	
+  		| Field 	    	 	| Value            |	
+  		| US_Date 				| Date: Sunday, April 1, 2012 |
+  		| US_Currency			| Currency: $123,456.00       |
+  		| US_Number 			| Number: 98,765.432          |
+  	Then I confirm the pluralization values for United States.	  	
+  		| Field 	    	 	| Value  |	
+  		| 1 beer 					| 1 beer |
+  		| 2 beer 					| 2 beer |
+  		| 3 beer 					| 3 beer |
+  		| 4 beer 					| 4 beer |
+  		| 5 beer 					| 5 beer |
+  		| 6 beer 					| 6 beer |
+  		| 7 beer 					| 7 beer |
