@@ -112,8 +112,9 @@ Feature: To test the AngularJS website home page.
   		| US_Date 				| Date: Sunday, April 1, 2012 |
   		| US_Currency			| Currency: $123,456.00       |
   		| US_Number 			| Number: 98,765.432          |
-  	Then I confirm the pluralization values for United States.	  	
+  	And I confirm the pluralization values for United States.	  	
   		| Field 	    	 	| Value  |	
+  		| no beers 				| no beers |
   		| 1 beer 					| 1 beer |
   		| 2 beer 					| 2 beer |
   		| 3 beer 					| 3 beer |
@@ -121,3 +122,18 @@ Feature: To test the AngularJS website home page.
   		| 5 beer 					| 5 beer |
   		| 6 beer 					| 6 beer |
   		| 7 beer 					| 7 beer |
+  	Then I confirm the localization values for Slovakia.
+  		| Field 	    	 	| Value            |	
+  		| SK_Date 				| Date: nedeľa, 1. apríla 2012 |
+  		| SK_Currency			| Currency: 123 456,00 €       |
+  		| SK_Number 			| Number: 98 765,432          |	  	
+  	And I confirm the pluralization values for Slovakia.	  	
+  		| Field 	    	 	| Value  |	
+  		| žiadne pivo 		| žiadne pivo |
+  		| 1 pivo 					| 1 pivo |
+  		| 2 pivá 					| 2 pivá |
+  		| 3 pivá 					| 3 pivá |
+  		| 4 pivá 					| 4 pivá |
+  		| 5 pív 					| 5 pív	 |
+  		| 6 pív 					| 6 pív	 |
+  		| 7 beer 					| 7 beer |		

@@ -26,4 +26,12 @@ public class CreateComponentsPage extends AbstractPage {
 	public List<WebElement> getUnitedStatesPluralization(){
 		return driver.findElements(By.xpath("//div[@module='app-us']/div/div/div[2]/div/div[*]/ng-pluralize"));
 	}
+	
+	public List<WebElement> getSlovakiaLocalization(){
+		return driver.findElements(By.xpath("//div[@module='app-sk']/div/div/div[1]/span"));
+	}
+	
+	public List<WebElement> getSlovakiaPluralization(){
+		return driver.findElements(By.xpath("//div[@module='app-sk']/div/div/div[2]/div/div[*]/ng-pluralize"));
+	}
 }

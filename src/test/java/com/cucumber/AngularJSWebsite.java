@@ -194,7 +194,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesLocalization());
 	}
 	
-	@Then("^I confirm the pluralization values for United States\\.$")
+	@And("^I confirm the pluralization values for United States\\.$")
 	public void iConfirmThePluralizationValuesForUnitedStates(DataTable table) throws Throwable {
 		/*List<WebElement> e = createComponentsPage.getUnitedStatesPluralization();
 		for(WebElement webElement : e){
@@ -202,6 +202,16 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 			System.out.println(webElement.getAttribute("innerText"));
 		}*/
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesPluralization());
+	}
+	
+	@Then("^I confirm the localization values for Slovakia\\.$")
+	public void iConfirmTheLocalizationValuesForSlovakia(DataTable table) throws Throwable {
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaLocalization());
+	}
+	
+	@Then("^I confirm the pluralization values for Slovakia\\.$")
+	public void i_confirm_the_pluralization_values_for_Slovakia(DataTable table) throws Throwable {
+		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaPluralization());
 	}
 	
 	private void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
