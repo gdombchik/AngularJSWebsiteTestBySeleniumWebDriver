@@ -8,12 +8,12 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.cucumber.pageObject.angularJSWebsite.AddSomeControlPage;
-import com.cucumber.pageObject.angularJSWebsite.CreateComponentsPage;
-import com.cucumber.pageObject.angularJSWebsite.DownloadAngularJSOnePage;
-import com.cucumber.pageObject.angularJSWebsite.LandingPage;
-import com.cucumber.pageObject.angularJSWebsite.TheBasicsPage;
-import com.cucumber.pageObject.angularJSWebsite.WireUpABackendPage;
+import com.cucumber.pageobject.angularjswebsite.AddSomeControlPage;
+import com.cucumber.pageobject.angularjswebsite.CreateComponentsPage;
+import com.cucumber.pageobject.angularjswebsite.DownloadAngularJSOnePage;
+import com.cucumber.pageobject.angularjswebsite.LandingPage;
+import com.cucumber.pageobject.angularjswebsite.TheBasicsPage;
+import com.cucumber.pageobject.angularjswebsite.WireUpABackendPage;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.After;

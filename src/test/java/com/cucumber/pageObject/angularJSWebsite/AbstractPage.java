@@ -1,4 +1,4 @@
-package com.cucumber.pageObject.angularJSWebsite;
+package com.cucumber.pageobject.angularjswebsite;
 
 import org.openqa.selenium.WebDriver;
 
