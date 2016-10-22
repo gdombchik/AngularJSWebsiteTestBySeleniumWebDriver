@@ -53,12 +53,12 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@Then("^I click on the Download AngularJS One button\\.$")
 	public void iClickOnTheDownloadAngularJSOneButton() throws Throwable {
-		//downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
+		downloadAngularJSOnePage = landingPage.navigateToDownloadAngularJSOnePage();
 	}
 
 	@And("^I check the properties of the Download AngularJS One page\\.$")
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
-		/*Map<String,String> data = table.asMap(String.class,String.class);
+		Map<String,String> data = table.asMap(String.class,String.class);
 		
 		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(data.get("Title Label"))); //Download AngularJS
 		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(data.get("Branch")));  //1.5.x (stable)
@@ -72,12 +72,12 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		Assert.assertTrue(downloadAngularJSOnePage.getPreviousVersions().getText().equals(data.get("Previous Versions"))); //Previous Versions
 		Assert.assertTrue(downloadAngularJSOnePage.getDownloadButton().getAttribute("href").contains(data.get("Download Button")));  //angular.min.js
 		downloadAngularJSOnePageCloseButton = downloadAngularJSOnePage.getCloseButton();
-		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(data.get("Close Button"))); //×*/
+		Assert.assertTrue(downloadAngularJSOnePageCloseButton.getText().equals(data.get("Close Button"))); //×
 	}
 
 	@Then("^I click on the Close button of the Download AngularJS One page\\.$")
 	public void iClickOnTheCloseButtonOfTheDownloadAngularJSOnePage() throws Throwable {
-		//downloadAngularJSOnePageCloseButton.click();
+		downloadAngularJSOnePageCloseButton.click();
 	}
 
 	@When("^I fill in the name\\.$")
@@ -196,11 +196,6 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	
 	@And("^I confirm the pluralization values for United States\\.$")
 	public void iConfirmThePluralizationValuesForUnitedStates(DataTable table) throws Throwable {
-		/*List<WebElement> e = createComponentsPage.getUnitedStatesPluralization();
-		for(WebElement webElement : e){
-			//System.out.println("-->" + webElement.getAttribute("when"));
-			System.out.println(webElement.getAttribute("innerText"));
-		}*/
 		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesPluralization());
 	}
 	
