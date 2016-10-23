@@ -1,6 +1,5 @@
 package com.cucumber;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +13,7 @@ import com.cucumber.pageobject.angularjswebsite.DownloadAngularJSOnePage;
 import com.cucumber.pageobject.angularjswebsite.LandingPage;
 import com.cucumber.pageobject.angularjswebsite.TheBasicsPage;
 import com.cucumber.pageobject.angularjswebsite.WireUpABackendPage;
+import com.cucumber.utils.WebDriverUtils;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.After;
@@ -24,6 +24,7 @@ import cucumber.api.java.en.When;
 
 public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WebDriver driver = getWebdriver();
+	WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 	private LandingPage landingPage;
 	private DownloadAngularJSOnePage downloadAngularJSOnePage;
 	private WebElement downloadAngularJSOnePageCloseButton;
@@ -100,17 +101,17 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmToLabelOfTheCurrentTodoItems(DataTable table) throws Throwable {
 		addSomeControlPage = landingPage.navigateToAddSomeControlPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 	
 	@Then("^I confirm the todo checkboxes that are selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreSelected(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 
 	@And("^I confirm the todo checkboxes that are not selected\\.$")
 	public void iConfirmTheTodoCheckboxesThatAreNotSelected(DataTable table) throws Throwable {		
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(false));
 	}
 
 	@Then("^I add a new todo item\\.$")
@@ -123,7 +124,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@And("^I check the values of the todo items\\.$")
 	public void iCheckTheValuesOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesOrLabels(AddSomeControlPage.TODO_ITEM_LABEL));
 	}
 
 	@Then("^I select the check box of the new todo item\\.$")
@@ -134,19 +135,19 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 
 	@And("^I recheck the value of the todo items\\.$")
 	public void iRecheckTheValueOfTheTodoItems(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),addSomeControlPage.getTodoCheckBoxesSelectedOrNotSelectedTodo(true));
 	}
 	
 	@When("^I confirm the labels of the current JavaScript Projects\\.$")
 	public void iConfirmTheLabelsOfTheCurrentJavaScriptProjects(DataTable table) throws Throwable {
 		wireUpABackendPage = landingPage.navigateToWireUpABackendPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectLinks());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectLinks());
 	}
 	
 	@Then("^I confirm the labels of the current JavaScript Project Descriptions\\.$")
 	public void iConfirmTheLabelsOfTheCurrentJavaScriptProjectDescriptions(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectDescriptions());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),wireUpABackendPage.getJavaScriptProjectDescriptions());
 	}
 	
 	@And("^Search for, update, and confirm a project values\\.$")
@@ -186,42 +187,26 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmTheLocales(DataTable table) throws Throwable {
 		createComponentsPage = landingPage.navigateToCreateComponentsPage();
 		
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getLocales());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getLocales());
 	}
 
 	@Then("^I confirm the localization values for United States\\.$")
 	public void iConfirmTheLocalizationValuesForUnitedStates(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesLocalization());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesLocalization());
 	}
 	
 	@And("^I confirm the pluralization values for United States\\.$")
 	public void iConfirmThePluralizationValuesForUnitedStates(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesPluralization());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getUnitedStatesPluralization());
 	}
 	
 	@Then("^I confirm the localization values for Slovakia\\.$")
 	public void iConfirmTheLocalizationValuesForSlovakia(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaLocalization());
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaLocalization());
 	}
 	
 	@Then("^I confirm the pluralization values for Slovakia\\.$")
 	public void i_confirm_the_pluralization_values_for_Slovakia(DataTable table) throws Throwable {
-		checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaPluralization());
-	}
-	
-	private void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
-		Assert.assertNotNull(todoLabels);  //check the WebElement List is not null
-		Assert.assertNotEquals(todoLabels.size(), 0);  //check the WebElement List is not zero
-		for(WebElement webElement : todoLabels){
-			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));  //check the WebElement List exists in the Cucumber Datatable Map
-		}
-	}
-	
-	private void checkConfirmTheValuesOfTheCurrentTodoItemsByList(List<List<String>> tableList,List<WebElement> todoLabels){
-		int i = 1;
-		for(WebElement webElement : todoLabels){
-			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
-			i++;
-		}		
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaPluralization());
 	}
 }
