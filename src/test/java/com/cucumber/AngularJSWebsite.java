@@ -40,12 +40,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	@After() //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(Scenario scenario){
 		if (scenario.isFailed()) {
-			try{
-	            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-	            scenario.embed(screenshot, "image/png"); //stick it in the report
-			}catch(WebDriverException somePlatformDontSupportScreenShots){
-				System.err.println(somePlatformDontSupportScreenShots.getMessage());
-			}    
+			webDriverUtils.takeStreenShot(scenario);
 		}
 		landingPage.closeDriver();
 	}
