@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.cucumber.pageobject.angularjswebsite.AddSomeControlPage;
@@ -16,6 +19,7 @@ import com.cucumber.pageobject.angularjswebsite.WireUpABackendPage;
 import com.cucumber.utils.WebDriverUtils;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -33,8 +37,16 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WireUpABackendPage wireUpABackendPage;
 	private CreateComponentsPage createComponentsPage;
 	
-	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
-	public void afterTest(){
+	@After() //Cucumber Scenario Hooks.  Close driver after each scenario.
+	public void afterTest(Scenario scenario){
+		if (scenario.isFailed()) {
+			try{
+	            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	            scenario.embed(screenshot, "image/png"); //stick it in the report
+			}catch(WebDriverException somePlatformDontSupportScreenShots){
+				System.err.println(somePlatformDontSupportScreenShots.getMessage());
+			}    
+		}
 		landingPage.closeDriver();
 	}
 	
