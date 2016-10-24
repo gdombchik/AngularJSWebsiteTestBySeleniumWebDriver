@@ -215,5 +215,6 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	@Then("^I confirm the pluralization values for Slovakia\\.$")
 	public void i_confirm_the_pluralization_values_for_Slovakia(DataTable table) throws Throwable {
 		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getSlovakiaPluralization());
+		Assert.fail();
 	}
 }
