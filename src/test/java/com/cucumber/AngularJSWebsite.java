@@ -195,7 +195,6 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 		createComponentsPage = landingPage.navigateToCreateComponentsPage();
 		
 		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getLocales());
-		Assert.fail();
 	}
 
 	@Then("^I confirm the localization values for United States\\.$")
