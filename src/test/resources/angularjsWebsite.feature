@@ -105,8 +105,8 @@ Feature: To test the AngularJS website home page.
   Scenario: Test Wire Create Components.
   	When I confirm the locales.
   		| Field 	    	 	| Value            |
-  		| United States 	| US               |
-  		| Slovakia        | SK               |
+  		| United States 	| Locale: US       |
+  		| Slovakia        | Locale: SK       |
   	Then I confirm the localization values for United States.	  	
   		| Field 	    	 	| Value            |	
   		| US_Date 				| Date: Sunday, April 1, 2012 |
@@ -116,12 +116,11 @@ Feature: To test the AngularJS website home page.
   		| Field 	    	 	| Value  |	
   		| no beers 				| no beers |
   		| 1 beer 					| 1 beer |
-  		| 2 beer 					| 2 beer |
-  		| 3 beer 					| 3 beer |
-  		| 4 beer 					| 4 beer |
-  		| 5 beer 					| 5 beer |
-  		| 6 beer 					| 6 beer |
-  		| 7 beer 					| 7 beer |
+  		| 2 beers 				| 2 beers |
+  		| 3 beers 				| 3 beers |
+  		| 4 beers 				| 4 beers |
+  		| 5 beers 				| 5 beers |
+  		| 6 beers 				| 6 beers |
   	Then I confirm the localization values for Slovakia.
   		| Field 	    	 	| Value            |	
   		| SK_Date 				| Date: nedeľa, 1. apríla 2012 |
@@ -135,5 +134,4 @@ Feature: To test the AngularJS website home page.
   		| 3 pivá 					| 3 pivá |
   		| 4 pivá 					| 4 pivá |
   		| 5 pív 					| 5 pív	 |
-  		| 6 pív 					| 6 pív	 |
-  		| 7 beer 					| 7 beer |		
+  		| 6 pív 					| 6 pív	 |		

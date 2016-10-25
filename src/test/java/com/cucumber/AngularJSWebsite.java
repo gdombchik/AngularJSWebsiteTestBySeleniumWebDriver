@@ -192,8 +192,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	
 	@When("^I confirm the locales\\.$")
 	public void iConfirmTheLocales(DataTable table) throws Throwable {
-		createComponentsPage = landingPage.navigateToCreateComponentsPage();
-		
+		createComponentsPage = landingPage.navigateToCreateComponentsPage();		
 		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByMap(table.asMap(String.class, String.class).values(),createComponentsPage.getLocales());
 	}
 
