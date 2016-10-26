@@ -3,6 +3,8 @@ package com.cucumber;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -27,6 +29,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class AngularJSWebsite extends AbstractPageStepDefinition{
+	private static final Logger logger = LogManager.getLogger(AngularJSWebsite.class.getName());
 	private WebDriver driver = getWebdriver();
 	WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 	private LandingPage landingPage;
@@ -68,6 +71,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iCheckThePropertiesOfTheDownloadAngularJSOnePage(DataTable table) throws Throwable {
 		Map<String,String> data = table.asMap(String.class,String.class);
 		
+		logger.trace("iCheckThePropertiesOfTheDownloadAngularJSOnePage-----> " + downloadAngularJSOnePage.getTitleLabel().getText());
 		Assert.assertTrue(downloadAngularJSOnePage.getTitleLabel().getText().equals(data.get("Title Label"))); //Download AngularJS
 		Assert.assertTrue(downloadAngularJSOnePage.getBranch().getText().equals(data.get("Branch")));  //1.5.x (stable)
 		Assert.assertTrue(downloadAngularJSOnePage.getBuildMinified().getText().equals(data.get("Build Minified"))); //Minified
