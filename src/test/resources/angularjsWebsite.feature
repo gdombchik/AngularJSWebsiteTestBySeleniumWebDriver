@@ -79,7 +79,7 @@ Feature: To test the AngularJS website home page.
 			| Spine					 	 		| Spine					   		|
 			| SproutCore					| SproutCore					|
 		Then I confirm the labels of the current JavaScript Project Descriptions.
-  		| Field               | Value               |
+  		| Field               | Value               															|
       | Angular 2			 		  | One framework. Mobile and desktop.		        		|
       | AngularJS			 		  | HTML enhanced for web apps!		        						|
       | Backbone			 		  | Models for your apps.		       									 	|
@@ -95,8 +95,6 @@ Feature: To test the AngularJS website home page.
   	And Search for, update, and confirm a project values.
   		| Field               		| Value               								|
   		| GWT_Current_Name			 	| GWT							    								|
-  		| GWT_Current_Website		 	| http://www.gwtproject.org/			    |
-  		| GWT_Current_Description	| JS in Java.			    								|
   		| GWT_Updated_Name			  | GWT_Updated			    								|
   		| GWT_Updated_Website		  | http://www.gwtproject_updated.org/ 	|
   		| GWT_Updated_Description | JS in Java._Updated 								|
@@ -108,7 +106,7 @@ Feature: To test the AngularJS website home page.
   		| United States 	| Locale: US       |
   		| Slovakia        | Locale: SK       |
   	Then I confirm the localization values for United States.	  	
-  		| Field 	    	 	| Value            |	
+  		| Field 	    	 	| Value            						|	
   		| US_Date 				| Date: Sunday, April 1, 2012 |
   		| US_Currency			| Currency: $123,456.00       |
   		| US_Number 			| Number: 98,765.432          |
@@ -122,10 +120,10 @@ Feature: To test the AngularJS website home page.
   		| 5 beers 				| 5 beers |
   		| 6 beers 				| 6 beers |
   	Then I confirm the localization values for Slovakia.
-  		| Field 	    	 	| Value            |	
-  		| SK_Date 				| Date: nedeľa, 1. apríla 2012 |
-  		| SK_Currency			| Currency: 123 456,00 €       |
-  		| SK_Number 			| Number: 98 765,432          |	  	
+  		| Field 	    	 	| Value            							|	
+  		| SK_Date 				| Date: nedeľa, 1. apríla 2012 	|
+  		| SK_Currency			| Currency: 123 456,00 €       	|
+  		| SK_Number 			| Number: 98 765,432          	|	  	
   	And I confirm the pluralization values for Slovakia.	  	
   		| Field 	    	 	| Value  |	
   		| žiadne pivo 		| žiadne pivo |
