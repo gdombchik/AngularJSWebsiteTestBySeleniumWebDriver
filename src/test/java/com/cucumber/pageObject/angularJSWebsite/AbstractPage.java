@@ -2,7 +2,7 @@ package com.cucumber.pageobject.angularjswebsite;
 
 import org.openqa.selenium.WebDriver;
 
-public class AbstractPage {
+public abstract class AbstractPage {
 
 	protected WebDriver driver;
 	
