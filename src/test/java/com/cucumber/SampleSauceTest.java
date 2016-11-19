@@ -116,7 +116,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Test
     public void amazon() throws Exception {
         driver.get("http://www.amazon.com/");
-        assertEquals("Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more", driver.getTitle());
+        assertEquals("Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more", driver.getTitle() + "1");
     }
 
     /**
