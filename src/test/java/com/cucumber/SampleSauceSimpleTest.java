@@ -8,8 +8,8 @@ import java.net.URL;
 
 public class SampleSauceSimpleTest {
 
-  public static final String USERNAME = "gdombchik";
-  public static final String ACCESS_KEY = "aaedc48d-3e62-452e-8704-09d50799b58e";
+  public static final String USERNAME = System.getenv("SAUCE_USERNAME");
+  public static final String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
   public static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:443/wd/hub";
 
   public static void main(String[] args) throws Exception {
