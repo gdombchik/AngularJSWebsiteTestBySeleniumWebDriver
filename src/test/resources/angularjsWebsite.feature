@@ -12,7 +12,7 @@ Feature: To test the AngularJS website home page.
     And I check the properties of the Download AngularJS One page.
       | Field              | Value                     |
       | Title Label        | Download AngularJS        |
-      | Branch             | 1.5.x (stable)            |
+      | Branch             | 1.6.x (latest)            |
       | Build Minified     | Minified                  |
       | Build Zip          | Zip                       |
       | Build Uncompressed | Uncompressed              |
