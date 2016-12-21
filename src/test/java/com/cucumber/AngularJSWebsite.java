@@ -59,7 +59,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	public void iConfirmIAmOnTheAngularJSWebsiteHomePage(DataTable table) throws Throwable {
 		WebElement downLoadAngularJSOneButton = landingPage.getDownLoadAngularJSOneButton(); 
 		Map<String,String> data = table.asMap(String.class,String.class);
-		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(data.get("DownLoad Angular JS One Button"))); //Download AngularJS 1\n\n(1.5.8 / 1.2.30
+		Assert.assertTrue(downLoadAngularJSOneButton.getText().equals(data.get("DownLoad Angular JS One Button"))); //Download AngularJS 1\n\n(1.6.0 / 1.2.32)
 	}
 
 	@Then("^I click on the Download AngularJS One button\\.$")
