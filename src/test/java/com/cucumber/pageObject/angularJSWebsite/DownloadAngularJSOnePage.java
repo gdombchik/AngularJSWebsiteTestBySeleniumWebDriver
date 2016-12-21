@@ -19,7 +19,7 @@ public class DownloadAngularJSOnePage extends AbstractPage {
 
 	//branch
 	public WebElement getBranch() {
-		return driver.findElement(By.cssSelector(".btn.branch-1-5-x"));
+		return driver.findElement(By.cssSelector(".btn.branch-1-6-x.active.legacy"));
 	}
 	
 	//buildMinified
